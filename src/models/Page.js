@@ -40,8 +40,19 @@ Page.find = (book_id , page_number , result) => {
       return;
     }
     if (res.length) {
-      console.log("found test: ", res[0]);
-      result(null, res[0]);
+      // console.log("found test: ", res[0]);
+
+      var lines = res[0].page_word.split(/\r?\n/);
+      
+
+      var resultStr = "";
+
+      for(let i=0 ; i < lines.length ;i++){
+        resultStr = resultStr + lines[i] + '<br/>'
+      }
+      console.log(resultStr);
+
+      result(null, resultStr);
       return;
     }
     result({ kind: "not_found" }, null);
